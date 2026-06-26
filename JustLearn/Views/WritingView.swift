@@ -40,8 +40,9 @@ struct WritingView: View {
                 practiceContent(for: wordsToLearn[currentIndex])
             } else {
                 WritingCompletedState(
+                    title: "Writing practice completed",
                     totalWords: wordsToLearn.count,
-                    onRestart: restartSession
+                    onRestart: startSession
                 )
             }
         }
@@ -54,16 +55,9 @@ struct WritingView: View {
             )
             .ignoresSafeArea()
         )
-        .onAppear {
-            // авто-старт першої сесії; після виходу показуємо стартовий екран
-            if !isSessionActive && wordsToLearn.isEmpty && !allMatching.isEmpty {
-                startSession()
-            }
-        }
     }
 
-    // MARK: - Стартовий екран (також екран після виходу з сесії)
-
+    
     private var startScreen: some View {
         VStack(spacing: 20) {
             Spacer()
@@ -122,7 +116,7 @@ struct WritingView: View {
         )
 
         if answerState == .wrong {
-            Text("Правильно: \(word.translation)")
+            Text("Correct answer: \(word.translation)")
                 .font(.headline)
                 .foregroundStyle(.red)
                 .transition(.opacity.combined(with: .move(edge: .top)))
@@ -158,11 +152,6 @@ struct WritingView: View {
         isSessionActive = true
         isFocused = true
     }
-
-    private func restartSession() {
-        startSession()
-    }
-
     private func exitSession() {
         isSessionActive = false
         isFocused = false

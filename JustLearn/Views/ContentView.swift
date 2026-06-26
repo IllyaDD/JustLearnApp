@@ -19,6 +19,10 @@ struct ContentView: View {
             Tab(Constans.writingSring, systemImage: Constans.writingIconString){
                 WritingView()
             }
+            Tab(Constans.settingsString, systemImage: Constans.settingsIconString){
+                SettingsView()
+            }
+            
         }
     }
 }

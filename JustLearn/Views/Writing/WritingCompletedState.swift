@@ -6,6 +6,7 @@
 import SwiftUI
 
 struct WritingCompletedState: View {
+    let title: String
     let totalWords: Int
     let onRestart: () -> Void
 
@@ -17,7 +18,7 @@ struct WritingCompletedState: View {
                 .foregroundStyle(.yellow.gradient)
                 .symbolEffect(.bounce)
 
-            Text("Writing practice completed")
+            Text(title)
                 .font(.title.weight(.bold))
                 .multilineTextAlignment(.center)
 
@@ -44,6 +45,6 @@ struct WritingCompletedState: View {
 }
 
 #Preview {
-    WritingCompletedState(totalWords: 15, onRestart: {})
+    WritingCompletedState(title: "Writing practice completed", totalWords: 15, onRestart: {})
         .padding()
 }

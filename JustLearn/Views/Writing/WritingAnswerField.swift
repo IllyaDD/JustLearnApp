@@ -12,7 +12,7 @@ struct WritingAnswerField: View {
     let onSubmit: () -> Void
 
     var body: some View {
-        TextField("Введіть слово", text: $text)
+        TextField("Enter a word", text: $text)
             .font(.title3)
             .padding(.horizontal, 16)
             .padding(.vertical, 14)

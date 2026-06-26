@@ -20,6 +20,9 @@ struct EditWordSheet: View {
                         Text("\(number)").tag(number)
                     }
                 }
+                .onChange(of: word.timestoStudy) {
+                    word.timesStudied = 0
+                }
             }
             .navigationTitle("Edit word")
             .toolbar {

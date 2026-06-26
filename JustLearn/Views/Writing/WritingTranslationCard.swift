@@ -10,7 +10,7 @@ struct WritingTranslationCard: View {
 
     var body: some View {
         VStack(spacing: 12) {
-            Text("Введіть переклад")
+            Text("Translate the word")
                 .font(.caption)
                 .foregroundStyle(.secondary)
                 .textCase(.uppercase)

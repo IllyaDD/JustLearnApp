@@ -10,20 +10,35 @@ import SwiftData
 
 struct WordListView: View {
     @Environment(\.modelContext) private var modelContext
-
-    @Query(sort: \Word.createdAt, order: .reverse) private var words: [Word]
+    
+    @Query private var words: [Word]
 
     @State private var isShowingAddWordSheet: Bool = false
     @State private var wordToEdit: Word?
     @State private var searchText = ""
+    @State private var sortOrder:sortingOrder  = .byDateNew
 
     var filteredWords: [Word] {
-        if searchText.isEmpty {
-            return words
-        }
-        return words.filter { word in
-            word.originalSpelling.localizedCaseInsensitiveContains(searchText) ||
-            word.translation.localizedCaseInsensitiveContains(searchText)
+        let base = searchText.isEmpty
+            ? words
+            : words.filter { word in
+                word.originalSpelling.localizedCaseInsensitiveContains(searchText) ||
+                word.translation.localizedCaseInsensitiveContains(searchText)
+            }
+
+        switch sortOrder {
+        case .byDateNew:
+            return base.sorted { $0.createdAt > $1.createdAt }
+        case .byDateOld:
+            return base.sorted { $0.createdAt < $1.createdAt }
+        case .byAlphabet:
+            return base.sorted {
+                $0.originalSpelling.localizedCompare($1.originalSpelling) == .orderedAscending
+            }
+        case .byAlphabetReverse:
+            return base.sorted {
+                $0.originalSpelling.localizedCompare($1.originalSpelling) == .orderedDescending
+            }
         }
     }
 
@@ -51,6 +66,18 @@ struct WordListView: View {
             }
             .searchable(text: $searchText, placement: .toolbar, prompt: "Search words")
             .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    Menu {
+                        Picker("Sort", selection: $sortOrder) {
+                            Text("Newest first").tag(sortingOrder.byDateNew)
+                            Text("Oldest first").tag(sortingOrder.byDateOld)
+                            Text("A–Z").tag(sortingOrder.byAlphabet)
+                            Text("Z–A").tag(sortingOrder.byAlphabetReverse)
+                        }
+                    } label: {
+                        Image(systemName: "arrow.up.arrow.down")
+                    }
+                }
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
                         isShowingAddWordSheet = true

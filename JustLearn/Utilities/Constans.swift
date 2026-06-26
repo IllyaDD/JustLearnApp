@@ -13,6 +13,7 @@ struct Constans{
     static let cardsString = "cards"
     static let writingSring = "writing"
     static let wordlistString = "wordlist"
+    static let settingsString = "settings"
     
     
     
@@ -21,6 +22,7 @@ struct Constans{
     static let writingIconString = "pencil.circle"
     static let wordlistIconString = "list.bullet"
     static let buttonIconString = "plus"
+    static let settingsIconString = "gear"
     
     enum AnswerState{
         case correct
@@ -39,15 +41,17 @@ extension Text{
 }
 extension Text{
     func textStyleSecondary() -> some View{
-     self
-         .frame(maxWidth: .infinity, alignment: .leading)
-         .foregroundStyle(.primary)
-         .font(.title2)
+        self
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .foregroundStyle(.primary)
+            .font(.title2)
     }
-    
-    
-    
-    
+    }
+
+enum sortingOrder{
+    case byDateNew
+    case byDateOld
+    case byAlphabet
+    case byAlphabetReverse
 }
 
- 
