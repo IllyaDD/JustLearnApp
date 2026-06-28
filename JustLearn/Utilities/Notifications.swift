@@ -23,30 +23,34 @@ func requestPermission() {
 
 
 
-func scheduleNotification(){
+func scheduleNotification(at date:Date){
+    let center = UNUserNotificationCenter.current()
+    center.removePendingNotificationRequests(withIdentifiers: ["dailyReminder"])
+    
     let content = UNMutableNotificationContent()
-    content.title = "Reminder"
-    content.body = "Right time to learn some words ;)"
+    content.title = "JustLearn"
+    content.body = "Don't forget to practice your vocabulary!"
+    content.sound = .default
     
-    var dateComponents = DateComponents()
-    dateComponents.hour = 23
-    dateComponents.minute = 23
+    let comps = Calendar.current.dateComponents([.hour, .minute], from: date)
+    let trigger = UNCalendarNotificationTrigger(dateMatching: comps, repeats: true)
     
-    
-    let trigger = UNCalendarNotificationTrigger(
-        dateMatching: dateComponents,
-        repeats: true
-    )
     
     let request = UNNotificationRequest(
-        identifier: "hello",
+        identifier: "dailyReminer",
         content: content,
         trigger: trigger
     )
-    
-    UNUserNotificationCenter.current().add(request){error in
-        if let error{
-            print(error)
-        }
+    center.add(request){error in
+        if let error{print(error)}
     }
+    
+    
+    
+    
+}
+
+func cancelNotification(){
+    UNUserNotificationCenter.current()
+        .removePendingNotificationRequests(withIdentifiers: ["dailyReminder"])
 }

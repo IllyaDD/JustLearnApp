@@ -16,6 +16,7 @@ struct WritingView: View {
     @State private var wordsToLearn: [Word] = []
     @State private var isSessionActive: Bool = false
     @Environment(\.modelContext) private var modelContext
+    @AppStorage("practiseDirection") private var practiseDirection: learningDestination = .TranslateToOriginal
 
     @Query private var allMatching: [Word]
 
@@ -103,7 +104,7 @@ struct WritingView: View {
 
         Spacer(minLength: 24)
 
-        WritingTranslationCard(word: word)
+        WritingTranslationCard(word: word, direction: practiseDirection)
             .animation(.spring(response: 0.4, dampingFraction: 0.8), value: currentIndex)
 
         Spacer(minLength: 24)
@@ -116,7 +117,7 @@ struct WritingView: View {
         )
 
         if answerState == .wrong {
-            Text("Correct answer: \(word.translation)")
+            Text("Correct answer: \(expectedAnswer(for: word))")
                 .font(.headline)
                 .foregroundStyle(.red)
                 .transition(.opacity.combined(with: .move(edge: .top)))
@@ -159,11 +160,15 @@ struct WritingView: View {
         answerState = .idle
     }
 
+    private func expectedAnswer(for word: Word) -> String {
+        practiseDirection == .OriginalToTranslate ? word.translation : word.originalSpelling
+    }
+
     private func isAnswerCorrect(for word: Word) -> Bool {
         let normalizedInput = text
             .lowercased()
             .trimmingCharacters(in: .whitespacesAndNewlines)
-        let normalizedAnswer = word.translation
+        let normalizedAnswer = expectedAnswer(for: word)
             .lowercased()
             .trimmingCharacters(in: .whitespacesAndNewlines)
         return normalizedInput == normalizedAnswer

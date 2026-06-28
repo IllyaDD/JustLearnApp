@@ -22,6 +22,7 @@ struct CardView: View {
     }
     @State private var isSessionActive: Bool = false
     @State private var isTransitioning: Bool = false
+    @AppStorage("practiseDirection") private var practiseDirection: learningDestination = .TranslateToOriginal
 
     init() {
         var descriptor = FetchDescriptor<Word>(
@@ -147,6 +148,8 @@ struct CardView: View {
     }
     private func CardFace(for word: Word, swipeProgress: CGFloat = 0) -> some View {
         let strokeColor: Color = swipeProgress > 0 ? .green : .red
+        let frontText = practiseDirection == .OriginalToTranslate ? word.originalSpelling : word.translation
+        let backText  = practiseDirection == .OriginalToTranslate ? word.translation : word.originalSpelling
         return RoundedRectangle(cornerRadius: 20)
             .fill(Color(.systemBackground))
             .shadow(color: .black.opacity(0.1), radius: 10, x: 0, y: 5)
@@ -155,14 +158,14 @@ struct CardView: View {
                     .stroke(strokeColor, lineWidth: abs(swipeProgress) * 4)
             }
             .overlay {
-                Text(word.originalSpelling)
+                Text(frontText)
                     .font(.largeTitle.bold())
                     .multilineTextAlignment(.center)
                     .padding()
                     .opacity(isFlipped ? 0 : 1)
             }
             .overlay {
-                Text(word.translation)
+                Text(backText)
                     .font(.largeTitle.bold())
                     .multilineTextAlignment(.center)
                     .padding()

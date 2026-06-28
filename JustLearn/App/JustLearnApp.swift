@@ -13,6 +13,7 @@ import SwiftData
 @main
 struct JustLearnApp: App {
     @AppStorage("appTheme") private var themeRaw: String = appTheme.system.rawValue
+    @AppStorage("hasSeenOnboarding") private var hasSeenOnboarding: Bool = false
     let container: ModelContainer
 
     init() {
@@ -27,11 +28,14 @@ struct JustLearnApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .preferredColorScheme(appTheme(rawValue: themeRaw)?.colorScheme)
-                .onAppear {
-                    requestPermission()
+            Group {
+                if hasSeenOnboarding {
+                    ContentView()
+                } else {
+                    OnBoardingView()
                 }
+            }
+            .preferredColorScheme(appTheme(rawValue: themeRaw)?.colorScheme)
         }
         .modelContainer(container)
     }

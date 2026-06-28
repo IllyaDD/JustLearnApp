@@ -7,6 +7,11 @@ import SwiftUI
 
 struct WritingTranslationCard: View {
     let word: Word
+    let direction: learningDestination
+
+    private var promptText: String {
+        direction == .OriginalToTranslate ? word.originalSpelling : word.translation
+    }
 
     var body: some View {
         VStack(spacing: 12) {
@@ -16,7 +21,7 @@ struct WritingTranslationCard: View {
                 .textCase(.uppercase)
                 .tracking(1.5)
 
-            Text(word.originalSpelling)
+            Text(promptText)
                 .font(.system(size: 42, weight: .bold, design: .rounded))
                 .multilineTextAlignment(.center)
                 .minimumScaleFactor(0.5)

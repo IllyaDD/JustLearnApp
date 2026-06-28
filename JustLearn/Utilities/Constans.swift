@@ -9,6 +9,8 @@ import Foundation
 import SwiftUI
 
 struct Constans{
+    //Limits
+    static let maxWordLength = 100
     //Name strings
     static let cardsString = "cards"
     static let writingSring = "writing"
@@ -77,6 +79,20 @@ enum appTheme: String, CaseIterable, Identifiable {
     }
 }
 
+enum learningDestination: String, CaseIterable, Identifiable {
+    case OriginalToTranslate
+    case TranslateToOriginal
+
+    var id: String { rawValue }
+
+    var displayName: String {
+        switch self {
+        case .OriginalToTranslate: return "Original → Translation"
+        case .TranslateToOriginal: return "Translation → Original"
+        }
+    }
+}
+
 enum CustomAppIcon: String, CaseIterable{
     case DefaultIcon
     case DarkIcon
@@ -97,9 +113,52 @@ enum CustomAppIcon: String, CaseIterable{
 
     var displayName: String {
         switch self {
-        case .DefaultIcon: "default"
-        case .DarkIcon:    "dark"
-        case .TealIcon:    "teal"
+        case .DefaultIcon: "Default"
+        case .DarkIcon:    "Dark"
+        case .TealIcon:    "Teal"
+        }
+    }
+}
+
+struct OnboardingPage: View {
+    let icon: String
+    let title: String
+    let subtitle: String
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 16) {
+            Spacer()
+            Spacer()
+            Image(systemName: icon)
+                .font(.system(size: 36, weight: .regular))
+                .foregroundStyle(.primary)
+            Text(title)
+                .font(.system(size: 40, weight: .bold))
+                .multilineTextAlignment(.leading)
+            Text(subtitle)
+                .font(.title3)
+                .foregroundStyle(.secondary)
+                .multilineTextAlignment(.leading)
+            Spacer()
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(.horizontal, 32)
+    }
+}
+
+struct OnboardingFeatureRow: View {
+    let icon: String
+    let text: String
+
+    var body: some View {
+        HStack(alignment: .top, spacing: 16) {
+            Image(systemName: icon)
+                .font(.system(size: 20, weight: .regular))
+                .frame(width: 28, alignment: .center)
+            Text(text)
+                .font(.title3)
+                .multilineTextAlignment(.leading)
+            Spacer()
         }
     }
 }
