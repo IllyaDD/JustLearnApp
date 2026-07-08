@@ -5,21 +5,9 @@
     {
       "layers" : [
         {
-          "blend-mode" : "normal",
-          "fill" : {
-            "solid" : "extended-gray:0.00000,1.00000"
-          },
           "glass" : true,
-          "hidden" : false,
-          "image-name" : "JL.svg",
-          "name" : "JL",
-          "position" : {
-            "scale" : 1,
-            "translation-in-points" : [
-              23.9921875,
-              0.15999618530497628
-            ]
-          }
+          "image-name" : "JL Icon — Light.svg",
+          "name" : "JL Icon — Light"
         }
       ],
       "name" : "Group",

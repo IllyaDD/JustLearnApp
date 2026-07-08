@@ -8,11 +8,11 @@ import SwiftUI
 struct AddWordSheet: View {
     @Environment(\.dismiss) private var dismiss
 
-    let onSave: (_ originalSpelling: String, _ translation: String, _ notes: String, _ timesToLearn: Int) -> Void
+    let onSave: (_ originalSpelling: String, _ translation: String, _ tags: [Tag], _ timesToLearn: Int) -> Void
 
     @State private var originalSpelling: String = ""
     @State private var translation: String = ""
-    @State private var notes: String = ""
+    @State private var selectedTags: [Tag] = []
     @State private var timesToLearn: Int = 1
 
     private var isFormValid: Bool {
@@ -20,7 +20,6 @@ struct AddWordSheet: View {
         && !translation.isEmpty
         && !WordValidation.isTooLong(originalSpelling)
         && !WordValidation.isTooLong(translation)
-        && !WordValidation.isTooLong(notes)
     }
 
     var body: some View {
@@ -44,12 +43,11 @@ struct AddWordSheet: View {
                     }
                 }
 
-                Section {
-                    TextField("Notes", text: $notes)
-                } footer: {
-                    if WordValidation.isTooLong(notes) {
-                        Text(WordValidation.message(for: .notes))
-                            .foregroundStyle(.red)
+                Section("Tags") {
+                    NavigationLink {
+                        TagPickerView(selectedTags: $selectedTags)
+                    } label: {
+                        TagPickerLabel(selectedTags: selectedTags)
                     }
                 }
 
@@ -59,7 +57,12 @@ struct AddWordSheet: View {
                     }
                 }
             }
+#if targetEnvironment(macCatalyst)
+            .navigationTitle("Just Learn")
+#else
             .navigationTitle("Add word")
+#endif
+            .toolbarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Cancel") {
@@ -69,7 +72,7 @@ struct AddWordSheet: View {
 
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Save") {
-                        onSave(originalSpelling, translation, notes, timesToLearn)
+                        onSave(originalSpelling, translation, selectedTags, timesToLearn)
                         dismiss()
                     }
                     .disabled(!isFormValid)

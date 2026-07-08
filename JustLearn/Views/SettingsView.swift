@@ -6,8 +6,15 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct SettingsView: View {
+    
+    @Environment(\.modelContext) private var modelContext
+    @Environment(\.colorScheme) private var scheme
+    @Query private var words:[Word]
+    @State private var showResetConfirmation: Bool = false
+    
     @AppStorage("appTheme") private var themeRaw: String = appTheme.system.rawValue
     @AppStorage("appIcon") private var currentIconSelection: CustomAppIcon = .DefaultIcon
     @AppStorage("notificationsEnabled") private var notificationsEnabled: Bool = false
@@ -22,11 +29,22 @@ struct SettingsView: View {
             set: { notificationTimeRaw = $0.timeIntervalSince1970 }
         )
     }
-    
-    
     var body: some View {
         NavigationStack {
             Form {
+                Section {
+                    NavigationLink {
+                        TagsManagementView()
+                    } label: {
+                        Label("Manage tags", systemImage: "tag")
+                    }
+                } header: {
+                    Text("Tags")
+                        .font(.title3.weight(.semibold))
+                        .foregroundStyle(.primary)
+                        .textCase(nil)
+                        .padding(.vertical, 4)
+                }
                 Section {
                     Picker("App theme", selection: $themeRaw) {
                         ForEach(appTheme.allCases) { theme in
@@ -37,7 +55,7 @@ struct SettingsView: View {
                 } header: {
                     Text("App Theme")
                         .font(.title3.weight(.bold))
-                        .foregroundStyle(.black)
+                        .foregroundStyle(.primary)
                         .textCase(nil)
                         .padding(.vertical, 4)
                 }
@@ -52,7 +70,7 @@ struct SettingsView: View {
                 } header: {
                     Text("App Icon")
                         .font(.title3.weight(.semibold))
-                        .foregroundStyle(.black)
+                        .foregroundStyle(.primary)
                         .textCase(nil)
                         .padding(.vertical, 4)
                 }
@@ -70,7 +88,7 @@ struct SettingsView: View {
                 } header: {
                     Text("Practice direction")
                         .font(.title3.weight(.semibold))
-                        .foregroundStyle(.black)
+                        .foregroundStyle(.primary)
                         .textCase(nil)
                         .padding(.vertical, 4)
                 }
@@ -88,7 +106,7 @@ struct SettingsView: View {
                 } header: {
                     Text("Notifications")
                         .font(.title3.weight(.semibold))
-                        .foregroundStyle(.black)
+                        .foregroundStyle(.primary)
                         .textCase(nil)
                         .padding(.vertical, 4)
                 }
@@ -104,13 +122,42 @@ struct SettingsView: View {
                     guard notificationsEnabled else { return }
                     scheduleNotification(at: notificationTime.wrappedValue)
                 }
+                Section{
+                    Button(role: .destructive){
+                        showResetConfirmation = true
+                    }label: {
+                        Text("Reset progress for all words")
+                    }
+                }header: {
+                    Text("Progress")
+                        .font(.title3.weight(.semibold))
+                        .foregroundStyle(.primary)
+                        .textCase(nil)
+                        .padding(.vertical, 4)
+
             }
+        }
             .scrollContentBackground(.hidden)
             .background(Color(.systemBackground))
             .padding()
             .navigationTitle(Text("Settings"))
+            .alert(
+                "Reset progress for all words?",
+                isPresented: $showResetConfirmation
+            ) {
+                Button("Reset", role: .destructive, action: resetAllWords)
+                Button("Cancel", role: .cancel) { }
+            } message: {
+                Text("This will set progress to 0 for every word.")
+            }
         }
-        
+    }
+    private func resetAllWords() {
+        for word in words{
+            word.timesStudied = 0
+            word.isLearned = false
+        }
+        try? modelContext.save()
     }
 }
 

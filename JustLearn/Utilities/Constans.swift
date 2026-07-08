@@ -11,6 +11,7 @@ import SwiftUI
 struct Constans{
     //Limits
     static let maxWordLength = 100
+    static let maxTagNameLength = 20
     //Name strings
     static let cardsString = "cards"
     static let writingSring = "writing"
@@ -91,6 +92,33 @@ enum learningDestination: String, CaseIterable, Identifiable {
         case .TranslateToOriginal: return "Translation → Original"
         }
     }
+}
+
+enum TagColor: String, Codable, CaseIterable, Identifiable {
+    case red, orange, yellow, green, blue, purple, gray
+
+    var id: String { rawValue }
+
+    var color: Color {
+        switch self {
+        case .red:    return .red
+        case .orange: return .orange
+        case .yellow: return .yellow
+        case .green:  return .green
+        case .blue:   return .blue
+        case .purple: return .purple
+        case .gray:   return .gray
+        }
+    }
+
+    var foregroundColor: Color {
+        switch self {
+        case .yellow: return .black
+        default:      return .white
+        }
+    }
+
+    var displayName: String { rawValue.capitalized }
 }
 
 enum CustomAppIcon: String, CaseIterable{

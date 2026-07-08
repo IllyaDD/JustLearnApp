@@ -17,9 +17,15 @@ struct JustLearnApp: App {
     let container: ModelContainer
 
     init() {
-        let schema = Schema([Word.self])
+        let args = ProcessInfo.processInfo.arguments
+        let isUITest = args.contains("-uitest-reset")
+        if args.contains("-force-onboarding") {
+            UserDefaults.standard.removeObject(forKey: "hasSeenOnboarding")
+        }
+        let schema = Schema([Word.self, Tag.self])
         let config = ModelConfiguration(
-            schema: schema
+            schema: schema,
+            isStoredInMemoryOnly: isUITest
             // cloudKitDatabase: .private("iCloud.illyaDD.JustLearn")
         )
     container = try! ModelContainer(for: schema,configurations: [config])

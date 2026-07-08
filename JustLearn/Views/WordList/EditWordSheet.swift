@@ -9,12 +9,18 @@ struct EditWordSheet: View {
     @Bindable var word: Word
     let onDone: () -> Void
 
+    private var tagsBinding: Binding<[Tag]> {
+        Binding(
+            get: { word.tags ?? [] },
+            set: { word.tags = $0 }
+        )
+    }
+
     private var isFormValid: Bool {
         !word.originalSpelling.isEmpty
         && !word.translation.isEmpty
         && !WordValidation.isTooLong(word.originalSpelling)
         && !WordValidation.isTooLong(word.translation)
-        && !WordValidation.isTooLong(word.notesUnwrapped)
     }
 
     var body: some View {
@@ -38,12 +44,11 @@ struct EditWordSheet: View {
                     }
                 }
 
-                Section {
-                    TextField("Notes", text: $word.notesUnwrapped)
-                } footer: {
-                    if WordValidation.isTooLong(word.notesUnwrapped) {
-                        Text(WordValidation.message(for: .notes))
-                            .foregroundStyle(.red)
+                Section("Tags") {
+                    NavigationLink {
+                        TagPickerView(selectedTags: tagsBinding)
+                    } label: {
+                        TagPickerLabel(selectedTags: word.tags ?? [])
                     }
                 }
 
@@ -56,7 +61,12 @@ struct EditWordSheet: View {
                     word.timesStudied = 0
                 }
             }
+#if targetEnvironment(macCatalyst)
+            .navigationTitle("Just Learn")
+#else
             .navigationTitle("Edit word")
+#endif
+            .toolbarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Done") {

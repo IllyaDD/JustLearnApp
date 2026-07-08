@@ -10,21 +10,39 @@ import SwiftData
 
 struct WordListView: View {
     @Environment(\.modelContext) private var modelContext
-    
     @Query private var words: [Word]
-
+    @Query(sort: \Tag.createdAt) private var allTags: [Tag]
     @State private var isShowingAddWordSheet: Bool = false
     @State private var wordToEdit: Word?
     @State private var searchText = ""
     @State private var sortOrder:sortingOrder  = .byDateNew
+    @State private var selectedTagID: UUID?
+
+    var tagCounts: [UUID: Int] {
+        var counts: [UUID: Int] = [:]
+        for word in words {
+            for tag in word.tags ?? [] {
+                counts[tag.id, default: 0] += 1
+            }
+        }
+        return counts
+    }
 
     var filteredWords: [Word] {
-        let base = searchText.isEmpty
-            ? words
-            : words.filter { word in
+        var base = words
+
+        if let selectedTagID {
+            base = base.filter { word in
+                (word.tags ?? []).contains { $0.id == selectedTagID }
+            }
+        }
+
+        if !searchText.isEmpty {
+            base = base.filter { word in
                 word.originalSpelling.localizedCaseInsensitiveContains(searchText) ||
                 word.translation.localizedCaseInsensitiveContains(searchText)
             }
+        }
 
         switch sortOrder {
         case .byDateNew:
@@ -52,16 +70,26 @@ struct WordListView: View {
                         .italic()
                         .padding()
                 } else {
-                    List {
-                        ForEach(filteredWords) { word in
-                            WordRow(
-                                word: word,
-                                onEdit: { wordToEdit = word },
-                                onDelete: { modelContext.delete(word) }
+                    VStack(spacing: 0) {
+                        if !allTags.isEmpty {
+                            TagFilterBar(
+                                tags: allTags,
+                                counts: tagCounts,
+                                selectedTagID: $selectedTagID
                             )
+                            .padding(.vertical, 8)
                         }
+                        List {
+                            ForEach(filteredWords) { word in
+                                WordRow(
+                                    word: word,
+                                    onEdit: { wordToEdit = word },
+                                    onDelete: { modelContext.delete(word) }
+                                )
+                            }
+                        }
+                        .listStyle(.plain)
                     }
-                    .listStyle(.plain)
                 }
             }
             .searchable(text: $searchText, placement: .toolbar, prompt: "Search words")
@@ -92,11 +120,11 @@ struct WordListView: View {
                 }
             }
             .sheet(isPresented: $isShowingAddWordSheet) {
-                AddWordSheet { originalSpelling, translation, notes, timesToLearn in
+                AddWordSheet { originalSpelling, translation, tags, timesToLearn in
                     addWord(
                         originalSpelling: originalSpelling,
                         translation: translation,
-                        notes: notes,
+                        tags: tags,
                         timesToLearn: timesToLearn
                     )
                 }
@@ -104,15 +132,16 @@ struct WordListView: View {
         }
     }
 
-    private func addWord(originalSpelling: String, translation: String, notes: String, timesToLearn: Int) {
+    private func addWord(originalSpelling: String, translation: String, tags: [Tag], timesToLearn: Int) {
         let word = Word(
             originalSpelling: originalSpelling,
             translation: translation,
-            notes: notes.isEmpty ? nil : notes,
+            notes: nil,
             timestoStudy: timesToLearn,
             timesStudied: 0
         )
         modelContext.insert(word)
+        word.tags = tags
     }
 }
 

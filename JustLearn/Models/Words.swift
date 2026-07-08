@@ -7,6 +7,34 @@
 
 import Foundation
 import SwiftData
+import SwiftUI
+
+
+
+@Model
+class Tag {
+    var id: UUID = UUID()
+    var name: String = ""
+    var colorRaw: String = TagColor.blue.rawValue
+    var createdAt: Date = Date()
+
+    var color: TagColor {
+        get { TagColor(rawValue: colorRaw) ?? .blue }
+        set { colorRaw = newValue.rawValue }
+    }
+
+    @Relationship(inverse: \Word.tags)
+    var words: [Word] = []
+
+
+    init(name: String, color: TagColor = .blue) {
+        self.id = UUID()
+        self.name = name
+        self.colorRaw = color.rawValue
+        self.createdAt = Date()
+    }
+}
+
 
 @Model
 class Word {
@@ -18,6 +46,9 @@ class Word {
     var timesStudied: Int = 0
     var createdAt: Date = Date()
     var isLearned:Bool = false
+    
+    @Relationship var tags: [Tag]? = []
+    
     
     var notesUnwrapped: String{
         get {notes ?? ""}
