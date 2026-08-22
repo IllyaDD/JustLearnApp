@@ -15,6 +15,7 @@ struct JustLearnApp: App {
     @AppStorage("appTheme") private var themeRaw: String = appTheme.system.rawValue
     @AppStorage("hasSeenOnboarding") private var hasSeenOnboarding: Bool = false
     let container: ModelContainer
+    let wordService: WordService
 
     init() {
         let args = ProcessInfo.processInfo.arguments
@@ -29,6 +30,8 @@ struct JustLearnApp: App {
             // cloudKitDatabase: .private("iCloud.illyaDD.JustLearn")
         )
     container = try! ModelContainer(for: schema,configurations: [config])
+    wordService = WordService(modelContext: container.mainContext)
+    WatchSyncManager.shared.activate(container: container)
     }
     
     
@@ -44,5 +47,6 @@ struct JustLearnApp: App {
             .preferredColorScheme(appTheme(rawValue: themeRaw)?.colorScheme)
         }
         .modelContainer(container)
+        .environment(wordService)
     }
 }

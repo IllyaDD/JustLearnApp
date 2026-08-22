@@ -1,18 +1,29 @@
-//
-//  WatchContentView.swift
-//  JustLearnWatch Watch App
-//
-//  Created by Illya Donchenko on 21.08.2026.
-//
-
 import SwiftUI
+import SwiftData
 
-struct WatchContentView: View {
+struct ContentView: View {
+    @Query(sort: \Word.createdAt, order: .reverse) private var words: [Word]
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationStack {
+            List(words) { word in
+                VStack(alignment: .leading, spacing: 2) {
+                    Text(word.originalSpelling)
+                        .font(.headline)
+                    Text(word.translation)
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                }
+            }
+            .navigationTitle("Words")
+            .overlay {
+                if words.isEmpty {
+                    ContentUnavailableView(
+                        "No words yet",
+                        systemImage: "applewatch.radiowaves.left.and.right",
+                        description: Text("Add words on your iPhone")
+                    )
+                }
+            }
+        }
     }
-}
-
-#Preview {
-    WatchContentView()
 }

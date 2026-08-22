@@ -1,11 +1,11 @@
 //
-//  WritingProgressHeader.swift
+//  PracticeProgressHeader.swift
 //  JustLearn
 //
 
 import SwiftUI
 
-struct WritingProgressHeader: View {
+struct PracticeProgressHeader: View {
     let currentIndex: Int
     let total: Int
 
@@ -37,6 +37,6 @@ struct WritingProgressHeader: View {
 }
 
 #Preview {
-    WritingProgressHeader(currentIndex: 3, total: 15)
+    PracticeProgressHeader(currentIndex: 3, total: 15)
         .padding()
 }

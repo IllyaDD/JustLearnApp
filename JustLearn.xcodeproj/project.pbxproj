@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		8FA1638B30386D8B007DCD95 /* JustLearnWatch Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 8FA1638130386D8A007DCD95 /* JustLearnWatch Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		8F3190762FFD1EE300D4A65B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -14,12 +18,55 @@
 			remoteGlobalIDString = 8F518DD42FDE647300F10A79;
 			remoteInfo = JustLearn;
 		};
+		8FA1638930386D8B007DCD95 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8F518DCD2FDE647300F10A79 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8FA1638030386D8A007DCD95;
+			remoteInfo = "JustLearnWatch Watch App";
+		};
+		8FB4A6E43039DFBF00A26C86 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8F518DCD2FDE647300F10A79 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8F518DD42FDE647300F10A79;
+			remoteInfo = JustLearn;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		8FA1632930386C36007DCD95 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				8FA1638B30386D8B007DCD95 /* JustLearnWatch Watch App.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		8F3190702FFD1EE300D4A65B /* JustLearnUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JustLearnUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F518DD52FDE647300F10A79 /* JustLearn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JustLearn.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8FA1638130386D8A007DCD95 /* JustLearnWatch Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "JustLearnWatch Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8FB4A6E03039DFBF00A26C86 /* JustLearnUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JustLearnUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		8FA163963038828C007DCD95 /* Exceptions for "JustLearn" folder in "JustLearnWatch Watch App" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Core/Models/Words.swift,
+				Core/Sync/WordSyncPayload.swift,
+				Core/Utilities/Constans.swift,
+				JustLearnTeal.icon,
+			);
+			target = 8FA1638030386D8A007DCD95 /* JustLearnWatch Watch App */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		8F3190712FFD1EE300D4A65B /* JustLearnUITests */ = {
@@ -29,7 +76,20 @@
 		};
 		8F518DD72FDE647300F10A79 /* JustLearn */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				8FA163963038828C007DCD95 /* Exceptions for "JustLearn" folder in "JustLearnWatch Watch App" target */,
+			);
 			path = JustLearn;
+			sourceTree = "<group>";
+		};
+		8FA1638230386D8A007DCD95 /* JustLearnWatch Watch App */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "JustLearnWatch Watch App";
+			sourceTree = "<group>";
+		};
+		8FB4A6E13039DFBF00A26C86 /* JustLearnUnitTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = JustLearnUnitTests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -49,6 +109,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8FA1637E30386D8A007DCD95 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8FB4A6DD3039DFBF00A26C86 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -56,7 +130,9 @@
 			isa = PBXGroup;
 			children = (
 				8F518DD72FDE647300F10A79 /* JustLearn */,
+				8FA1638230386D8A007DCD95 /* JustLearnWatch Watch App */,
 				8F3190712FFD1EE300D4A65B /* JustLearnUITests */,
+				8FB4A6E13039DFBF00A26C86 /* JustLearnUnitTests */,
 				8F518DD62FDE647300F10A79 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -66,6 +142,8 @@
 			children = (
 				8F518DD52FDE647300F10A79 /* JustLearn.app */,
 				8F3190702FFD1EE300D4A65B /* JustLearnUITests.xctest */,
+				8FA1638130386D8A007DCD95 /* JustLearnWatch Watch App.app */,
+				8FB4A6E03039DFBF00A26C86 /* JustLearnUnitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -103,10 +181,12 @@
 				8F518DD12FDE647300F10A79 /* Sources */,
 				8F518DD22FDE647300F10A79 /* Frameworks */,
 				8F518DD32FDE647300F10A79 /* Resources */,
+				8FA1632930386C36007DCD95 /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				8FA1638A30386D8B007DCD95 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				8F518DD72FDE647300F10A79 /* JustLearn */,
@@ -118,6 +198,51 @@
 			productReference = 8F518DD52FDE647300F10A79 /* JustLearn.app */;
 			productType = "com.apple.product-type.application";
 		};
+		8FA1638030386D8A007DCD95 /* JustLearnWatch Watch App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8FA1638C30386D8B007DCD95 /* Build configuration list for PBXNativeTarget "JustLearnWatch Watch App" */;
+			buildPhases = (
+				8FA1637D30386D8A007DCD95 /* Sources */,
+				8FA1637E30386D8A007DCD95 /* Frameworks */,
+				8FA1637F30386D8A007DCD95 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				8FA1638230386D8A007DCD95 /* JustLearnWatch Watch App */,
+			);
+			name = "JustLearnWatch Watch App";
+			packageProductDependencies = (
+			);
+			productName = "JustLearnWatch Watch App";
+			productReference = 8FA1638130386D8A007DCD95 /* JustLearnWatch Watch App.app */;
+			productType = "com.apple.product-type.application";
+		};
+		8FB4A6DF3039DFBF00A26C86 /* JustLearnUnitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8FB4A6E63039DFBF00A26C86 /* Build configuration list for PBXNativeTarget "JustLearnUnitTests" */;
+			buildPhases = (
+				8FB4A6DC3039DFBF00A26C86 /* Sources */,
+				8FB4A6DD3039DFBF00A26C86 /* Frameworks */,
+				8FB4A6DE3039DFBF00A26C86 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8FB4A6E53039DFBF00A26C86 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				8FB4A6E13039DFBF00A26C86 /* JustLearnUnitTests */,
+			);
+			name = JustLearnUnitTests;
+			packageProductDependencies = (
+			);
+			productName = JustLearnUnitTests;
+			productReference = 8FB4A6E03039DFBF00A26C86 /* JustLearnUnitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -125,7 +250,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 2650;
+				LastSwiftUpdateCheck = 2660;
 				LastUpgradeCheck = 2650;
 				TargetAttributes = {
 					8F31906F2FFD1EE300D4A65B = {
@@ -134,6 +259,13 @@
 					};
 					8F518DD42FDE647300F10A79 = {
 						CreatedOnToolsVersion = 26.4.1;
+					};
+					8FA1638030386D8A007DCD95 = {
+						CreatedOnToolsVersion = 26.6;
+					};
+					8FB4A6DF3039DFBF00A26C86 = {
+						CreatedOnToolsVersion = 26.6;
+						TestTargetID = 8F518DD42FDE647300F10A79;
 					};
 				};
 			};
@@ -153,6 +285,8 @@
 			targets = (
 				8F518DD42FDE647300F10A79 /* JustLearn */,
 				8F31906F2FFD1EE300D4A65B /* JustLearnUITests */,
+				8FA1638030386D8A007DCD95 /* JustLearnWatch Watch App */,
+				8FB4A6DF3039DFBF00A26C86 /* JustLearnUnitTests */,
 			);
 		};
 /* End PBXProject section */
@@ -166,6 +300,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		8F518DD32FDE647300F10A79 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8FA1637F30386D8A007DCD95 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8FB4A6DE3039DFBF00A26C86 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -189,6 +337,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8FA1637D30386D8A007DCD95 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8FB4A6DC3039DFBF00A26C86 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -196,6 +358,16 @@
 			isa = PBXTargetDependency;
 			target = 8F518DD42FDE647300F10A79 /* JustLearn */;
 			targetProxy = 8F3190762FFD1EE300D4A65B /* PBXContainerItemProxy */;
+		};
+		8FA1638A30386D8B007DCD95 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8FA1638030386D8A007DCD95 /* JustLearnWatch Watch App */;
+			targetProxy = 8FA1638930386D8B007DCD95 /* PBXContainerItemProxy */;
+		};
+		8FB4A6E53039DFBF00A26C86 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8F518DD42FDE647300F10A79 /* JustLearn */;
+			targetProxy = 8FB4A6E43039DFBF00A26C86 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -207,7 +379,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 88XP7GVG5N;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 26.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = illyaDD.JustLearnUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -228,7 +400,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 88XP7GVG5N;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 26.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = illyaDD.JustLearnUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -383,6 +555,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -422,6 +595,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -440,6 +614,126 @@
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		8FA1638D30386D8B007DCD95 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = JustLearnTeal;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 88XP7GVG5N;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = JustLearnWatch;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = illyaDD.JustLearn;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = illyaDD.JustLearn.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 26.0;
+			};
+			name = Debug;
+		};
+		8FA1638E30386D8B007DCD95 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = JustLearnTeal;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 88XP7GVG5N;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = JustLearnWatch;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = illyaDD.JustLearn;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = illyaDD.JustLearn.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 26.0;
+			};
+			name = Release;
+		};
+		8FB4A6E73039DFBF00A26C86 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 88XP7GVG5N;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.5;
+				MACOSX_DEPLOYMENT_TARGET = 26.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = illyaDD.JustLearnUnitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/JustLearn.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/JustLearn";
+				XROS_DEPLOYMENT_TARGET = 26.5;
+			};
+			name = Debug;
+		};
+		8FB4A6E83039DFBF00A26C86 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 88XP7GVG5N;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.5;
+				MACOSX_DEPLOYMENT_TARGET = 26.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = illyaDD.JustLearnUnitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/JustLearn.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/JustLearn";
+				XROS_DEPLOYMENT_TARGET = 26.5;
 			};
 			name = Release;
 		};
@@ -469,6 +763,24 @@
 			buildConfigurations = (
 				8F518DE32FDE647400F10A79 /* Debug */,
 				8F518DE42FDE647400F10A79 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8FA1638C30386D8B007DCD95 /* Build configuration list for PBXNativeTarget "JustLearnWatch Watch App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8FA1638D30386D8B007DCD95 /* Debug */,
+				8FA1638E30386D8B007DCD95 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8FB4A6E63039DFBF00A26C86 /* Build configuration list for PBXNativeTarget "JustLearnUnitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8FB4A6E73039DFBF00A26C86 /* Debug */,
+				8FB4A6E83039DFBF00A26C86 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

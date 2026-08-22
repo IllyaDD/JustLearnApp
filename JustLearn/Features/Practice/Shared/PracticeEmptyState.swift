@@ -1,11 +1,11 @@
 //
-//  WritingEmptyState.swift
+//  PracticeEmptyState.swift
 //  JustLearn
 //
 
 import SwiftUI
 
-struct WritingEmptyState: View {
+struct PracticeEmptyState: View {
     var body: some View {
         VStack(spacing: 16) {
             Spacer()
@@ -33,5 +33,5 @@ struct WritingEmptyState: View {
 }
 
 #Preview {
-    WritingEmptyState()
+    PracticeEmptyState()
 }

@@ -25,7 +25,7 @@ struct WritingView: View {
     var body: some View {
         VStack(spacing: 0) {
             if viewModel.eligibleWords(from: allMatching).isEmpty && viewModel.selectedTagID == nil {
-                WritingEmptyState()
+                PracticeEmptyState()
             } else if !viewModel.isSessionActive {
                 startScreen
             } else if let word = viewModel.currentWord {
@@ -99,7 +99,7 @@ struct WritingView: View {
         }
         .padding(.top, 8)
 
-        WritingProgressHeader(currentIndex: viewModel.currentIndex, total: viewModel.sessionWords.count)
+        PracticeProgressHeader(currentIndex: viewModel.currentIndex, total: viewModel.sessionWords.count)
 
         Spacer(minLength: 24)
 
